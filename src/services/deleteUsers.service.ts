@@ -36,7 +36,6 @@ export const deleteUsersService = async (userId: number): Promise<IUserWithoutPa
 }
 
         const querySelect: IUserReq = await client.query(queryStrSelect);
-        console.log(querySelect.rows[0])
 
         return querySelect.rows[0];   
 };

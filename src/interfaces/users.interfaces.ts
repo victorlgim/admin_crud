@@ -1,9 +1,10 @@
 import { QueryResult } from "pg"
 import { z } from 'zod'
-import { allUsersSchema, createUserSchema, returnUserSchema } from "../schemas/users.schemas."
+import { allUsersSchema, createUserSchema, returnUserSchema, updateUserSchema } from "../schemas/users.schemas."
 
 type IUserRequest = z.infer<typeof createUserSchema>
 type IUser = z.infer<typeof returnUserSchema>
+type IUpdateRequest = z.infer<typeof updateUserSchema>
 
 type IUserWithoutPassword = Omit<IUser, 'password'>
 type IUserReq = QueryResult<IUser>
@@ -16,5 +17,6 @@ export {
     IUserWithoutPassword,
     IUserResult,
     IUserReq,
-    IAllUsersReturn
+    IAllUsersReturn,
+    IUpdateRequest
 }

@@ -5,7 +5,7 @@ import { IUserReq } from '../interfaces/users.interfaces'
 import { client } from '../database'
 
 const ensureEmailExistsMiddleware = async (req: Request, res: Response, next: NextFunction) => {
-    console.log(req.body)
+
     const { name, email } = req.body
 
     const selectString: string = `

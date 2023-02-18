@@ -9,6 +9,12 @@ export const createUserSchema = z.object({
     active: z.boolean().optional()
 })
 
+export const updateUserSchema = z.object({
+    name: z.string().min(3).max(45).optional(),
+    email: z.string().email().optional()
+})
+
+
 
 export const returnUserSchema = createUserSchema.extend({
     id: z.number(),

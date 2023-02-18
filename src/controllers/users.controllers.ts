@@ -30,7 +30,6 @@ export const listProfileController = async (req: Request, res: Response): Promis
 }
 
 export const updateProfileController = async (req: Request, res: Response): Promise<Response> => {
-    console.log(req.user)
     const id = parseInt(req.params.id)
     const body = req.body
     const newUpdate = await updateUsers(id, body)

@@ -1,10 +1,10 @@
 import { client } from '../database'
-import { IUserReq, IUser  } from '../interfaces/users.interfaces'
+import { IUserReq, IUser, IUpdateRequest  } from '../interfaces/users.interfaces'
 import { QueryConfig } from 'pg'
 import format from 'pg-format'
 import { AppError } from '../errors';
 
-export const updateUsers = async (userId: number, object: any): Promise<IUser> => {
+export const updateUsers = async (userId: number, object: IUpdateRequest): Promise<IUser> => {
 
     const { name, email } = object;
 
@@ -40,6 +40,10 @@ export const updateUsers = async (userId: number, object: any): Promise<IUser> =
     const queryStrSelect: QueryConfig = {
       text: selectString,
       values: [userId]
+    }
+
+    if (!name && !email) {
+       throw new AppError('You need to update your name and/or email', 400)
     }
 
     const querySelect: IUserReq = await client.query(queryStrSelect);

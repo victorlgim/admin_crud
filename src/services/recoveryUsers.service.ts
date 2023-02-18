@@ -20,13 +20,11 @@ export const recoveryUsersService = async (userId: number): Promise<IUserWithout
         values: [userId]
 }
       
-
         const querySelect: IUserReq = await client.query(queryStrSelect);
-        console.log(querySelect.rows[0])
+
         if (querySelect.rows[0]?.active === true) {
             throw new AppError('This account is already active')
         }
-
 
         const insertQueryString: string = format(`
            UPDATE 
@@ -43,7 +41,6 @@ export const recoveryUsersService = async (userId: number): Promise<IUserWithout
         };
 
        await client.query(queryConfig);
-
-        
-        return querySelect.rows[0];   
+      
+       return querySelect.rows[0];   
 };
