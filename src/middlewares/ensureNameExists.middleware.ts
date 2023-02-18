@@ -10,12 +10,12 @@ const ensureNameExistsMiddleware = async (req: Request, res: Response, next: Nex
     const { name } = req.body
 
     const selectString: string = `
-    SELECT 
-        *
-    FROM 
-        users
-    WHERE
-        id = $1;
+        SELECT 
+            *
+        FROM 
+            users
+        WHERE
+            id = $1;
  `
  
     const queryStrSelect: QueryConfig = {

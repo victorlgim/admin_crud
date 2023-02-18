@@ -25,7 +25,7 @@ const createLoginService = async (payload: ILoginRequest): Promise<string> => {
 
     const queryResult: IUserReq = await client.query(queryConfig)
 
-    if (!queryResult.rows[0].active) {
+    if (queryResult.rows[0]?.active === false) {
         throw new AppError('Your account has been deactivated', 401)
     } 
 
