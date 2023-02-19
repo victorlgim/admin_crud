@@ -8,8 +8,10 @@ export const listUsersService = async (): Promise<IAllUsersReturn> => {
         SELECT
             id, name, email, admin, active
         FROM
-            users;
-    `
+            users
+        ORDER BY
+            id ASC;
+`
 
     const queryResult = await client.query(queryString)
 
